@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/codeedu/codeedu/appllication/repositories"
+	"github.com/codeedu/codeedu/application/repositories"
 	"github.com/codeedu/codeedu/framework/utils"
 	"github.com/codeedu/codeedu/domain"
 	"github.com/jessevdk/go-flags"

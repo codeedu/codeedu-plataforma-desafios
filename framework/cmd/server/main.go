@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/codeedu/codeedu/appllication/repositories"
-	"github.com/codeedu/codeedu/appllication/usecases"
+	"github.com/codeedu/codeedu/application/repositories"
+	"github.com/codeedu/codeedu/application/usecases"
 	"github.com/codeedu/codeedu/framework/pb"
 	"github.com/codeedu/codeedu/framework/servers"
 	"github.com/codeedu/codeedu/framework/utils"

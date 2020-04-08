@@ -1,4 +1,4 @@
-module github.com/codeedu/codeedu
+module github.com/codeedu/codeedu-plataforma-desafios
 
 go 1.14
 

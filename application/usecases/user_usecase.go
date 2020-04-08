@@ -1,7 +1,7 @@
 package usecases
 
 import (
-	"github.com/codeedu/codeedu/appllication/repositories"
+	"github.com/codeedu/codeedu/application/repositories"
 	"github.com/codeedu/codeedu/domain"
 	"log"
 )
