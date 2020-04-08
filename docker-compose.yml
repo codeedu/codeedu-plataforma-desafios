@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+   image: postgres:9.4
+   restart: always
+   tty: true
+   volumes:
+     - .pgdata:/var/lib/postgresql/data
+   environment:
+     - POSTGRES_PASSWORD=root
+     - POSTGRES_DB=codeedu
+   ports:
+     - "5432:5432"
