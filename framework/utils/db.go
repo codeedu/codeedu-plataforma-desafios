@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"github.com/codeedu/codeedu/domain"
+	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 	"log"

@@ -2,9 +2,9 @@ package servers
 
 import (
 	"context"
-	"github.com/codeedu/codeedu/application/usecases"
-	"github.com/codeedu/codeedu/framework/pb"
-	"github.com/codeedu/codeedu/domain"
+	"github.com/codeedu/codeedu-plataforma-desafios/application/usecases"
+	"github.com/codeedu/codeedu-plataforma-desafios/framework/pb"
+	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 )
 
 type UserServer struct {

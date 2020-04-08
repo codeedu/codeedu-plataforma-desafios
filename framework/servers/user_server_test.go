@@ -2,12 +2,12 @@ package servers_test
 
 import (
 	"context"
-	"github.com/codeedu/codeedu/application/repositories"
-	"github.com/codeedu/codeedu/application/usecases"
-	"github.com/codeedu/codeedu/framework/pb"
-	"github.com/codeedu/codeedu/framework/servers"
-	"github.com/codeedu/codeedu/framework/utils"
-	"github.com/codeedu/codeedu/domain"
+	"github.com/codeedu/codeedu-plataforma-desafios/application/repositories"
+	"github.com/codeedu/codeedu-plataforma-desafios/application/usecases"
+	"github.com/codeedu/codeedu-plataforma-desafios/framework/pb"
+	"github.com/codeedu/codeedu-plataforma-desafios/framework/servers"
+	"github.com/codeedu/codeedu-plataforma-desafios/framework/utils"
+	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
 	uuid "github.com/satori/go.uuid"
