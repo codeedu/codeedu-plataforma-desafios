@@ -1,204 +1,137 @@
-# Contribution guidelines
+# Guia de contribuição do projeto
 
-## Table of Contents
+## Tabela de conteúdo
 
-- [Getting started](#getting-started)
-  - [Language](#language)
-    - [For native English speakers](#for-native-english-speakers)
-  - [Code of Conduct](#code-of-conduct)
-- [How can I help?](#how-can-i-help)
-  - [Documentation](#documentation)
-  - [Issues](#issues)
-    - [Submitting an issue](#submitting-an-issue)
+- [Primeiros Passos](#primeiros-passos)
+  - [Código de conduta](#código-de-conduta)
+- [Como posso ajudar?](#como-posso-ajudar)
+  - [Documentação](#documentação)
+  - [Problemas](#problemas)
+    - [Enviando um problema](#enviando-um-problema)
   - [Feedback](#feedback)
-  - [Code](#code)
-    - [Dev environment](#dev-environment)
-- [Commiting](#commiting)
-  - [Skipping building process](#skipping-building-process)
-  - [Why all these rules?](#why-all-these-rules)
-- [Submitting a pull request](#submitting-a-pull-request)
+  - [Código](#código)
+    - [Ambiente de desenvolvimento](#ambiente-de-desenvolvimento)
+- [Convenção de Commits](#convenção-de-commits)
+  - [Por que todas essas regras?](#porque-todas-essas-regras)
+- [Enviando um pull request](#enviando-um-pull-request)
 
-## Getting started
+## Primeiros Passos
 
-First off, we would like to thank you for taking the time to contribute and make this a better project!
+Primeiramente, gostaríamos de agradecer por você dedicar um tempo para contribuir e fazer deste um projeto melhor.
 
-Here we have a set of instructions and guidelines to reduce misunderstandings and make the process of contributing to `codeedu-plataforma-desafios` as smooth as possible.
+Aqui temos um conjunto de instruções e diretrizes para reduzir mal-entendidos e tornar o processo de contribuição para o `codeedu-plataforma-desafios` o mais suave possível.
 
-We hope this guide makes the contribution process clear and answers any questions you may have.
+Esperamos que este guia ajude a torne claro o processo de contribuição e responda a quaisquer perguntas que você possa ter.
 
-### Language
+### Código de conduta
 
-Please, while contributing or interacting in any way in this project, refrain from using any language other than **English**.
+Esperamos que os participantes do projeto cumpram nosso Código de Conduta. Você pode verificar o [texto completo](https://opensource.guide/code-of-conduct/) para entender o tipo de conduta que esperamos e quais ações serão e não serão toleradas.
 
-#### For native English speakers
+Ao participar deste projeto, você concorda em cumprir seus termos.
 
-Try to use simple words and sentences. Don't make fun of non-native English speakers if you find something wrong about the way they express themselves.
+## Como posso ajudar?
 
-Try to encourage newcomers to express their opinions, and make them comfortable enough to do so.
+Aqui estão algumas maneiras pelas quais você pode ajudar, juntamente com algumas diretrizes.
 
-### Code of Conduct
+### Documentação
 
-We expect that project participants to adhere to our Code of Conduct. You can check the [full text](https://opensource.guide/code-of-conduct/) so that you may understand the kind of conduct we are expecting and what actions will and will not be tolerated.
+Como usuário de `codeedu-plataforma-desafios`, você é o candidato perfeito para nos ajudar a melhorar nossa documentação.
 
-By participating in this project, you agree to abide by its terms.
+Erros de digitação, erros, falta de exemplos e/ou explicações e assim por diante, são apenas alguns exemplos de coisas que podem ser corrigidas e/ou aprimoradas.
 
-## How can I help?
+Você pode até fazer melhorias neste guia. :)
 
-Here are some ways you can help along with some guidelines.
+Ao documentar, tente manter as coisas simples e claras.
 
-### Documentation
+### Problemas
 
-As a user of `codeedu-plataforma-desafios`, you're the perfect candidate to help us improve our documentation!
+Alguns problemas são criados com informações ausentes, sem um modelo, não reproduzíveis ou simples
+inválido.
 
-Typos, errors, lack of examples and/or explanation and so on, are just some examples of things that could be fixed and/or improved.
+Você pode torná-los mais fáceis de entender e resolver.
 
-You could even make improvements to this guide! :)
+#### Enviando um problema
 
-While documenting, try to keep things simple and clear.
-
-### Issues
-
-Some issues are created with missing information, without a template, not reproducible, or plain
-invalid.
-
-You can make them easier to understand and resolve.
-
-#### Submitting an issue
-
-- Please search for similar issues before opening a new one;
-- Use one of the corresponding issue templates;
-- Use a clear and descriptive title;
-- Include as much information as possible by filling out the provided issue
-  template;
-- Most of the time, the best way to report an issue is a failing test proving it.
+- Procure problemas semelhantes antes de abrir um novo;
+- Use um dos modelos de problemas correspondentes;
+- Use um título claro e descritivo;
+- Inclua o máximo de informações possível, preenchendo o modelo de problema fornecido;
+- Na maioria das vezes, a melhor maneira de relatar um problema é a falha no teste.
 
 ### Feedback
 
-The more feedback the better! We're always looking for more suggestions and opinions on discussions. That's a good opportunity to influence the future direction of this tool.
+Quanto mais feedback, melhor! Estamos sempre procurando mais sugestões e opiniões sobre discussões. Essa é uma boa oportunidade para influenciar a direção futura desta ferramenta.
 
-This includes submitting an enhancement suggestion, including completely new features and minor improvements to existing functionality.
+Isso inclui o envio de uma sugestão de aprimoramento, incluindo recursos completamente novos e pequenas melhorias na funcionalidade existente.
 
-### Code
+### Código
 
-You can use issue labels to discover issues you could help out with:
+Você pode usar `issue labels` para descobrir problemas com os quais você poderia ajudar:
 
-- [`bug` issues](https://github.com/codeedu/codeedu-plataforma-desafios/labels/bug)
-  are known bugs we'd like to fix;
-- [`enhancement` issues](https://github.com/codeedu/codeedu-plataforma-desafios/labels/enhancement)
-  are features we're open to include.
+- [`bug` issues](https://github.com/codeedu/codeedu-plataforma-desafios/labels/bug) são erros conhecidos que gostaríamos de corrigir;
+- [`enhancement` issues](https://github.com/codeedu/codeedu-plataforma-desafios/labels/enhancement) são recursos que estamos abertos a incluir.
 
-When you see an issue that is already assigned, please check to see if there isn't someone working on it already (maybe try asking in the issue). This is to prevent unnecessary work for everyone involved.
+Quando você vir um problema(`issue`) que já está atribuído, verifique se já não há alguém trabalhando nele (talvez tente perguntar no problema(`issue`)). Isso é para evitar trabalho desnecessário para todos os envolvidos.
 
-#### Dev environment
+#### Ambiente de desenvolvimento
 
-When developing, prefer using **Go** ≥ 1.14. Writing code with the latest stable Golang versions allows us to use newer developer tools.
+Ao desenvolver, prefira usar **Go** ≥ 1,14. Escrever código com as últimas versões estáveis ​​do Go nos permite usar novas ferramentas de desenvolvedor.
 
-After [cloning the repository](https://help.github.com/articles/cloning-a-repository/), run `wip` to install dependencies.
+Depois de [clonar o repositório](https://help.github.com/articles/cloning-a-repository/), para subir as aplicações `client` e `server` você precisa navegar até suas respectivas pastas.
 
-A summary of the scripts:
-**WIP**
+**client** (/codeedu-plataforma-desafios/framework/cmd/client)
 
-## Commiting
+    $ go run main.go
 
-A commit message can consists of a **header**, **body** and **footer**. The header is the only mandatory part and consists of a type and a subject. The body is used to fully describe the change. The footer is the place to reference any issues or pull requests related to the commit. That said, we end with a template like this:
+**server** (/codeedu-plataforma-desafios/framework/cmd/server)
+
+    $ go run main.go
+
+**Despendências:**
+Você precisa subir a base de dados usando o `docker` para isso, basta execultar o comando abaixo.
+
+    $ docker-compose up
+
+#### Convenção de Commits
+
+Essa convenção usa o [conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/)
+
+#### Resumo
+
+A especificação do Conventional Commits é uma convenção simples para utilizar nas mensagens de commit. Ela define um conjunto de regras para criar um histórico de commit explícito, o que facilita a criação de ferramentas automatizadas. Esta convenção segue o [SemVer](https://semver.org/), descrevendo os recursos, correções e modificações que quebram a compatibilidade nas mensagens de commit.
+
+A mensagem do commit deve ser estruturada da seguinte forma:
 
 ```
-<type>: <subject>
+<type>[optional scope]: <description>
 
 [optional body]
 
-[optional footer]
+[optional footer(s)]
 ```
 
-To ensure that a commit is valid, easy to read, and changelog-ready, we have a hook that lints the commit message before allowing a commit to pass. This linter verifies the following:
+O commit contém os seguintes elementos estruturais, para comunicar a intenção ao utilizador da sua biblioteca:
 
-- The header (first line) is the only mandatory part of the commit message;
-- The body and footer are both optional but its use is highly encouraged;
-- The header should contains:
-  - A type:
-    - Must be lowercase;
-    - Must be one of:
-      - **chore**: A change that neither fix a bug nor adds a feature;
-      - **ci**: A CI change;
-      - **docs**: A documentation change or fix;
-      - **feat**: A new feature;
-      - **fix**: A bug fix;
-      - **test**: A test-related change.
-  - A subject:
-    - Must be capitalized;
-    - Must be limited to 50 characters or less;
-    - Must omit any trailing punctuation.
-- The body:
-  - Must have a leading blank line;
-  - Each line must be limited to 72 characters or less.
-- The footer:
-  - Must have a leading blank line;
-  - Each line must be limited to 72 characters or less;
-  - If your commit is about documentation or meta files, please add the tag **[skip ci]** to skip the building process.
-  - If needed, reference to issues and pull requests must be made here in the last line.
+**fix:** um commit do tipo fix soluciona um problema na sua base de código (isso se correlaciona com `PATCH` do versionamento semântico).
+**feat:** um commit do tipo feat inclui um novo recurso na sua base de código (isso se correlaciona com `MINOR` do versionamento semântico).
+**BREAKING CHANGE:** um commit que contém o texto BREAKING CHANGE:, no começo do texto do corpo opcional ou do rodapé opcional, inclui uma modificação que quebra a compatibilidade da API (isso se correlaciona com `MAJOR` do versionamento semântico). Uma BREAKING CHANGE pode fazer parte de commits de qualquer tipo.
+Outros: tipos adicionais são permitidos além de fix: e feat:, por exemplo [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) (baseado na Convenção do Angular) recomenda-se `chore:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`, entre outros.
 
-You also should follow these general guidelines when committing:
+##### [Exemplos de commits](https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4/#exemplos)
 
-- Use the present tense ("Add feature" not "Added feature");
-- Use the imperative mood ("Move cursor to..." not "Moves cursor to...");
-- Try to answer the following questions:
-  - Why is this change necessary?
-  - How does it address the issue?
-  - What side effects (if any) does this change may have?
+##### [mais informações](https://www.conventionalcommits.org/en/v1.0.0/)
 
-Example of a commit message:
+## Enviando um pull request
 
-```
-type: Summarize changes in around 50 characters or less
+Antes de enviar um `pull request`, verifique se o seguinte foi feito:
 
-More detailed explanatory text, if necessary. Wrap it to about 72
-characters or so. In some contexts, the first line is treated as the
-subject of the commit and the rest of the text as the body. The
-blank line separating the summary from the body is critical (unless
-you omit the body entirely); various tools like `log`, `shortlog`
-and `rebase` can get confused if you run the two together.
+- Está segguindo o [GitHub Flow](https://guides.github.com/introduction/flow/)
+- Está segguindo o [5 Useful Tips For A Better Commit Message](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message) artigo e o post [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/) post.
+- Está segguindo o [Linking a pull request to an issue](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue)
 
-Explain the problem that this commit is solving. Focus on why you
-are making this change as opposed to how (the code explains that).
-Are there side effects or other unintuitive consequences of this
-change? Here's the place to explain them.
-
-Further paragraphs come after blank lines.
-
- - Bullet points are okay, too
-
- - Typically a hyphen or asterisk is used for the bullet, preceded
-   by a single space, with blank lines in between, but conventions
-   vary here
-
-If you use an issue tracker, put references to them at the bottom,
-like this:
-
-Resolves: #123
-See also: #456, #789
-```
-
-### Why all these rules?
-
-We try to enforce these rules for the following reasons:
-
-- Automatically generating changelog;
-- Communicating in a better way the nature of changes;
-- Triggering build and publish processes;
-- Automatically determining a semantic version bump (based on the types of commits);
-- Making it easier for people to contribute, by allowing them to explore a more structured commit history.
-
-## Submitting a pull request
-
-Before submitting a pull request, please make sure the following is done:
-
-- Follow the [GitHub Flow](https://guides.github.com/introduction/flow/)
-- Follow the [5 Useful Tips For A Better Commit Message](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message) article and the [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/) post.
-- Follow the [Linking a pull request to an issue](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue)
-
-- [Fork](https://help.github.com/en/articles/fork-a-repo) the repository and create your branch from `master`.
-  - Example: `feature/my-awesome-feature` or `fix/annoying-bug`;
-- Run `wip` in the repository root;
-- If you’ve fixed a bug or added code that should be tested, **add tests**;
-- Ensure the test suite passes;
-- Ensure your commit is validated;
+- [Fork](https://help.github.com/en/articles/fork-a-repo) o repositório e crie seu branch a partir do `master`.
+  - Exemplo: `feature/my-awesome-feature` ou `fix/annoying-bug`;
+- Execute `go run main.go` no `client` e no `server`;
+- Se você corrigiu um bug ou adicionou um código que deve ser testado, **adicione testes** por favor;
+- Garantir que o conjunto de testes seja aprovado;
+- Garanta que seu commit seja validado;
