@@ -3,6 +3,7 @@ module github.com/codeedu/codeedu-plataforma-desafios
 go 1.14
 
 require (
+	github.com/badoux/checkmail v0.0.0-20181210160741-9661bd69e9ad
 	github.com/golang/protobuf v1.3.5
 	github.com/jessevdk/go-flags v1.4.0
 	github.com/jinzhu/gorm v1.9.12

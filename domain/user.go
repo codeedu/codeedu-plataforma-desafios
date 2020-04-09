@@ -1,6 +1,8 @@
 package domain
 
 import (
+	"errors"
+	"github.com/badoux/checkmail"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"log"
@@ -39,5 +41,18 @@ func (user *User) Prepare() error {
 }
 
 func (user *User) validate() error {
+	if user.Name == "" {
+		return errors.New("name cannot be empty")
+	}
+	if user.Email == "" {
+		return errors.New("email cannot be empty")
+	}
+	if err := checkmail.ValidateFormat(user.Email); err != nil {
+		return errors.New("invalid email")
+	}
+	if user.Password == "" {
+		return errors.New("pasword cannot be empty")
+	}
+
 	return nil
 }
