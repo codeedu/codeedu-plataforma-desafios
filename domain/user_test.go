@@ -21,7 +21,7 @@ func TestNewUser(t *testing.T) {
 
 	user, err := domain.NewUser("Wesley", "wesleyxwesleyxxx@gmail.com", "12345678")
 	require.Nil(t, err)
-	
+
 	govalidator.IsUUIDv4(user.Token)
 
 }

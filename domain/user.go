@@ -26,7 +26,7 @@ func NewUser(name string, email string, password string) (*User, error) {
 		Password: password,
 	}
 
-	err := user.Prepare()
+	err := user.prepare()
 
 	if err != nil {
 		return &User{}, err
@@ -35,7 +35,7 @@ func NewUser(name string, email string, password string) (*User, error) {
 	return &user, nil
 }
 
-func (user *User) Prepare() error {
+func (user *User) prepare() error {
 
 	password, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 

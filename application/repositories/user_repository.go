@@ -3,7 +3,6 @@ package repositories
 import (
 	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/jinzhu/gorm"
-	"log"
 )
 
 type UserRepository interface {
@@ -16,18 +15,10 @@ type UserRepositoryDb struct {
 
 func (repo UserRepositoryDb) Insert(user *domain.User) (*domain.User, error) {
 
-	err := user.Prepare()
+	err := repo.Db.Create(user).Error
 
 	if err != nil {
-		log.Fatalf("Error during the user validation: %v", err)
-		return user, err
-	}
-
-	err = repo.Db.Create(user).Error
-
-	if err != nil {
-		log.Fatalf("Error to persis user: %v", err)
-		return user, err
+		return nil, err
 	}
 
 	return user, nil
