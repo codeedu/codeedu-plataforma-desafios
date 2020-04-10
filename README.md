@@ -14,6 +14,16 @@ Na seção "Issues" desse repositório você encontrará tarefas para melhorias 
 
 Para participar, de um "fork" nesse repositório, implemente seu código e em seguida abra uma "Pull Request".
 
+
+## Para testar a execução do server 
+Para testar os serviços disponibilizados pelo "server", recomendamos a utilização do "evans", um client gRPC desenvolvido em Go.
+
+Exemplo:
+
+```bash
+evans -r -p 8080
+```
+
 ## Licença
 
 Esse projeto é open source, aceitará contribuições qualquer natureza para que a plataforma de desafios seja criada e está licenciado sob a [MIT license](https://opensource.org/licenses/MIT).
