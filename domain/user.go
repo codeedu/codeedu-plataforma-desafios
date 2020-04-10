@@ -8,10 +8,10 @@ import (
 
 type User struct {
 	Base
-	Name     string `gorm:"type:varchar(255)"`
-	Email    string `gorm:"type:varchar(100);unique_index"`
-	Password string `json:"-"`
-	Token    string `json:"token" gorm:"unique_index"`
+	Name     string `json:"name" gorm:"type:varchar(255)"`
+	Email    string `json:"email" gorm:"type:varchar(255);unique_index"`
+	Password string `json:"-" gorm:"type:varchar(255)"`
+	Token    string `json:"token" gorm:"type:varchar(255);unique_index"`
 }
 
 func NewUser() *User {
@@ -24,6 +24,7 @@ func (user *User) Prepare() error {
 
 	if err != nil {
 		log.Fatalf("Error during the password generation: %v", err)
+		return err
 	}
 
 	user.Password = string(password)
@@ -33,9 +34,11 @@ func (user *User) Prepare() error {
 
 	if err != nil {
 		log.Fatalf("Error during the user validation: %v", err)
+		return err
 	}
 
 	return nil
+
 }
 
 func (user *User) validate() error {

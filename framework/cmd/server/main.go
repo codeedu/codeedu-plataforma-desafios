@@ -28,6 +28,7 @@ func main() {
 	log.Printf("start server on port %d", *port)
 
 	userServer := setUpUserServer()
+
 	grpcServer := grpc.NewServer()
 	pb.RegisterUserServiceServer(grpcServer, userServer)
 	reflection.Register(grpcServer)

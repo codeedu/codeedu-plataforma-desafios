@@ -11,15 +11,12 @@ type UserUseCase struct {
 }
 
 func (u *UserUseCase) Create(user *domain.User) (*domain.User, error) {
-	err := user.Prepare()
+
+	user, err := u.UserRepository.Insert(user)
 
 	if err != nil {
-		log.Fatal(err)
-	}
-
-	user, err = u.UserRepository.Insert(user)
-	if err != nil {
-		log.Fatalf("Error to create new user: %v", err)
+		log.Fatalf("Error to persist new user: %v", err)
+		return user, err
 	}
 
 	return user, nil

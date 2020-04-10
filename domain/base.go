@@ -3,20 +3,30 @@ package domain
 import (
 	"github.com/jinzhu/gorm"
 	uuid "github.com/satori/go.uuid"
+	"log"
 	"time"
 )
 
-// Base contains common columns for all tables.
 type Base struct {
-	ID        string `gorm:"type:uuid;primary_key;"`
-	CreatedAt time.Timer
-	UpdatedAt time.Time
-	DeletedAt *time.Time `sql:"index"`
+	ID        string     `json:"id" gorm:"type:uuid;primary_key"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	DeletedAt time.Time `json:"deleted_at" sql:"index"`
 }
 
-// BeforeCreate will set a UUID rather than numeric ID.
-func (base *Base) BeforeCreate(scope *gorm.Scope) error {
+func (base *Base) BeforeCreate(scope *gorm.Scope) error  {
 
-	scope.SetColumn("CreatedAt", time.Now())
-	return scope.SetColumn("ID", uuid.NewV4().String())
+	err := scope.SetColumn("CreatedAt", time.Now())
+
+	if err != nil {
+		log.Fatalf("Error during obj creating: %v", err)
+	}
+
+	err = scope.SetColumn("ID", uuid.NewV4().String())
+
+	if err != nil {
+		log.Fatalf("Error during obj creating: %v", err)
+	}
+
+	return nil
 }
