@@ -9,19 +9,28 @@ import (
 	"github.com/codeedu/codeedu-plataforma-desafios/framework/servers"
 	"github.com/codeedu/codeedu-plataforma-desafios/framework/utils"
 	"github.com/jinzhu/gorm"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
+	"os"
 )
 
 var db *gorm.DB
 
+func init() {
+	err := godotenv.Load()
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+}
+
 func main() {
 
-	db = utils.ConnectDB()
-	db.LogMode(true)
+	db = utils.ConnectDB(os.Getenv("env"))
 
 	port := flag.Int("port", 0, "the server port")
 	flag.Parse()

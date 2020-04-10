@@ -14,8 +14,7 @@ import (
 var db *gorm.DB
 
 func TestLogin_Auth(t *testing.T) {
-	db = utils.ConnectDB()
-	db.LogMode(true)
+	db = utils.ConnectDB("test")
 
 	repo := repositories.UserRepositoryDb{Db: db}
 	email := faker.Email()

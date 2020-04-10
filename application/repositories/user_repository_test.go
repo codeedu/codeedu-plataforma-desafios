@@ -6,17 +6,13 @@ import (
 	"github.com/codeedu/codeedu-plataforma-desafios/application/repositories"
 	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/codeedu/codeedu-plataforma-desafios/framework/utils"
-	"github.com/jinzhu/gorm"
 	"github.com/stretchr/testify/require"
 	"log"
 	"testing"
 )
 
-var db *gorm.DB
-
 func TestUserRepositoryDb_Find(t *testing.T) {
-	db = utils.ConnectDB()
-	db.LogMode(true)
+	db := utils.ConnectDB("test")
 
 	repo := repositories.UserRepositoryDb{Db: db}
 	newUser, err := domain.NewUser(faker.Name(), faker.Email(), "123")

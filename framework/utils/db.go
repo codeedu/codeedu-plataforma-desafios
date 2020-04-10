@@ -3,32 +3,48 @@ package utils
 import (
 	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"log"
 	"os"
 )
 
-func ConnectDB() *gorm.DB {
-
-	err := godotenv.Load("/Users/wesley/Projects/codeedu/.env")
+func init() {
+	err := godotenv.Load("../../.env")
 
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
+}
 
-	dsn := os.Getenv("dsn")
+func ConnectDB(env string) *gorm.DB {
+	var dsn string
+	var db *gorm.DB
+	var err error
 
-	db, err := gorm.Open("postgres", dsn)
+	if env != "test" {
+		dsn = os.Getenv("dsn")
+		db, err = gorm.Open(os.Getenv("dbType"), dsn)
+	} else {
+		dsn = os.Getenv("dsnTest")
+		db, err = gorm.Open(os.Getenv("dbTypeTest"), dsn)
+	}
 
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 		panic(err)
 	}
 
-	//defer db.Close()
+	if os.Getenv("debug") == "true" {
+		db.LogMode(true)
+	}
 
-	db.AutoMigrate(&domain.User{})
+	if os.Getenv("AutoMigrateDb") == "true" {
+		db.AutoMigrate(&domain.User{})
+	}
+
+	//defer db.Close()
 
 	return db
 }
