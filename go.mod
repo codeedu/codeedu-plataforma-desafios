@@ -3,6 +3,7 @@ module github.com/codeedu/codeedu-plataforma-desafios
 go 1.14
 
 require (
+	github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496
 	github.com/golang/protobuf v1.3.5
 	github.com/jessevdk/go-flags v1.4.0
 	github.com/jinzhu/gorm v1.9.12

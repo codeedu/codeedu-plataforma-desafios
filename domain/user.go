@@ -1,21 +1,38 @@
 package domain
 
 import (
+	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
-	"log"
+	"time"
 )
 
-type User struct {
-	Base
-	Name     string `json:"name" gorm:"type:varchar(255)"`
-	Email    string `json:"email" gorm:"type:varchar(255);unique_index"`
-	Password string `json:"-" gorm:"type:varchar(255)"`
-	Token    string `json:"token" gorm:"type:varchar(255);unique_index"`
+func init() {
+	govalidator.SetFieldsRequiredByDefault(true)
 }
 
-func NewUser() *User {
-	return &User{}
+type User struct {
+	Base     `valid:"required"`
+	Name     string `json:"name" gorm:"type:varchar(255)" valid:"notnull"`
+	Email    string `json:"email" gorm:"type:varchar(255);unique_index" valid:"notnull,email"`
+	Password string `json:"-" gorm:"type:varchar(255)" valid:"notnull"`
+	Token    string `json:"token" gorm:"type:varchar(255);unique_index" valid:"notnull,uuid"`
+}
+
+func NewUser(name string, email string, password string) (*User, error) {
+	user := User{
+		Name:     name,
+		Email:    email,
+		Password: password,
+	}
+
+	err := user.Prepare()
+
+	if err != nil {
+		return &User{}, err
+	}
+
+	return &user, nil
 }
 
 func (user *User) Prepare() error {
@@ -23,17 +40,17 @@ func (user *User) Prepare() error {
 	password, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 
 	if err != nil {
-		log.Fatalf("Error during the password generation: %v", err)
 		return err
 	}
 
+	user.ID = uuid.NewV4().String()
+	user.CreatedAt = time.Now()
 	user.Password = string(password)
 	user.Token = uuid.NewV4().String()
 
 	err = user.validate()
 
 	if err != nil {
-		log.Fatalf("Error during the user validation: %v", err)
 		return err
 	}
 
@@ -42,5 +59,12 @@ func (user *User) Prepare() error {
 }
 
 func (user *User) validate() error {
+
+	_, err := govalidator.ValidateStruct(user)
+
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
