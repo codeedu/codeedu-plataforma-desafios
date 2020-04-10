@@ -11,7 +11,7 @@ import (
 
 func ConnectDB() *gorm.DB {
 
-	err := godotenv.Load()
+	err := godotenv.Load("/Users/wesley/Projects/codeedu/.env")
 
 	if err != nil {
 		log.Fatalf("Error loading .env file")

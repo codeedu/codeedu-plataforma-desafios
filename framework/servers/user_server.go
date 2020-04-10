@@ -35,3 +35,17 @@ func (UserServer *UserServer) CreateUser(ctx context.Context, req *pb.UserReques
 		Token: newUser.Token,
 	}, nil
 }
+
+func (UserServer *UserServer) Auth(ctx context.Context, req *pb.UserAuthRequest) (*pb.UserResponse, error) {
+
+	user, err := UserServer.UserUseCase.Auth(req.GetEmail(), req.GetPassword())
+
+	if err != nil {
+		return nil, status.Errorf(codes.PermissionDenied, "Email and password don't match")
+	}
+
+	return &pb.UserResponse{
+		Token: user.Token,
+	}, nil
+
+}

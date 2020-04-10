@@ -20,22 +20,22 @@ type User struct {
 }
 
 func NewUser(name string, email string, password string) (*User, error) {
-	user := User{
+	user := &User{
 		Name:     name,
 		Email:    email,
 		Password: password,
 	}
 
-	err := user.prepare()
+	err := user.Prepare()
 
 	if err != nil {
-		return &User{}, err
+		return nil, err
 	}
 
-	return &user, nil
+	return user, nil
 }
 
-func (user *User) prepare() error {
+func (user *User) Prepare() error {
 
 	password, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 
@@ -56,6 +56,11 @@ func (user *User) prepare() error {
 
 	return nil
 
+}
+
+func (user *User) IsCorrectPassword(password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	return err == nil
 }
 
 func (user *User) validate() error {
