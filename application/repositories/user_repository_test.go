@@ -13,6 +13,7 @@ import (
 
 func TestUserRepositoryDb_Find(t *testing.T) {
 	db := utils.ConnectDB("test")
+	defer db.Close()
 
 	repo := repositories.UserRepositoryDb{Db: db}
 	newUser, err := domain.NewUser(faker.Name(), faker.Email(), "123")

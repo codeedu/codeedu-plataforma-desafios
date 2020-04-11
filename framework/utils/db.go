@@ -8,13 +8,18 @@ import (
 	_ "github.com/lib/pq"
 	"log"
 	"os"
+	"path/filepath"
+	"runtime"
 )
 
 func init() {
-	err := godotenv.Load("../../.env")
+	_, b, _, _ := runtime.Caller(0)
+	basepath   := filepath.Dir(b)
+
+	err := godotenv.Load(basepath + "/../../.env")
 
 	if err != nil {
-		log.Fatalf("Error loading .env file")
+		log.Fatalf("Error loading .env files")
 	}
 }
 
@@ -41,7 +46,8 @@ func ConnectDB(env string) *gorm.DB {
 	}
 
 	if os.Getenv("AutoMigrateDb") == "true" {
-		db.AutoMigrate(&domain.User{})
+		db.AutoMigrate(&domain.User{}, &domain.Author{}, &domain.Challenge{}, &domain.ChallengeFile{})
+		db.Model(domain.ChallengeFile{}).AddForeignKey("challenge_id", "challenges (id)", "CASCADE", "CASCADE")
 	}
 
 	//defer db.Close()

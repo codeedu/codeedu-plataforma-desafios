@@ -8,10 +8,10 @@ import (
 
 type Author struct {
 	Base    `valid:"required"`
-	Name    string `json:"name" valid:"notnull"`
-	Email   string `json:"email" valid:"email"`
-	Picture string `json:"picture" valid:"-"`
-	Github  string `json:"picture" valid:"-"`
+	Name    string `json:"name" valid:"notnull" gorm:"type:varchar(255)"`
+	Email   string `json:"email" valid:"email" gorm:"type:varchar(255)"`
+	Picture string `json:"picture" valid:"-" gorm:"type:varchar(255)"`
+	Github  string `json:"picture" valid:"-" gorm:"type:varchar(255)"`
 }
 
 func NewAuthor(name string, email string) (*Author, error) {

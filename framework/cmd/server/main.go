@@ -37,9 +37,11 @@ func main() {
 	log.Printf("start server on port %d", *port)
 
 	userServer := setUpUserServer()
+	challengeServer := setUpChallengeServer()
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterUserServiceServer(grpcServer, userServer)
+	pb.RegisterChallengeServiceServer(grpcServer, challengeServer)
 	reflection.Register(grpcServer)
 
 	address := fmt.Sprintf("0.0.0.0:%d", *port)
@@ -59,4 +61,11 @@ func setUpUserServer() *servers.UserServer {
 	userRepository := repositories.UserRepositoryDb{Db: db}
 	userServer.UserUseCase = usecases.UserUseCase{UserRepository: userRepository}
 	return userServer
+}
+
+func setUpChallengeServer() *servers.ChallengeServer {
+	challengeServer := servers.NewChallengeServer()
+	challengeRepository := repositories.ChallengeRepositoryDb{Db: db}
+	challengeServer.ChallengeUseCase = usecases.ChallengeUseCase{ChallengeRepository: challengeRepository}
+	return challengeServer
 }

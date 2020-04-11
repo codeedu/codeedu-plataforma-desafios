@@ -7,9 +7,11 @@ import (
 )
 
 type ChallengeFile struct {
-	Base `valid:"required"`
-	Name string `json:"name" valid:"notnull"`
-	URL  string `json:"name" valid:"url"`
+	Base        `valid:"required"`
+	Name        string    `json:"name" valid:"notnull" gorm:"type:varchar(255)"`
+	URL         string    `json:"name" valid:"url" gorm:"type:varchar(255)"`
+	ChallengeID string    `gorm:"column:challenge_id;type:uuid;not null" valid:"-"`
+	Challenge   Challenge `valid:"-"`
 }
 
 func NewChallengeFile(name string, url string) (*ChallengeFile, error) {
@@ -22,7 +24,7 @@ func NewChallengeFile(name string, url string) (*ChallengeFile, error) {
 	cfile.ID = uuid.NewV4().String()
 	cfile.CreatedAt = time.Now()
 
-	err := cfile.isValid()
+	err := cfile.Valid()
 
 	if err != nil {
 		return nil, err
@@ -31,7 +33,7 @@ func NewChallengeFile(name string, url string) (*ChallengeFile, error) {
 	return &cfile, nil
 }
 
-func (cfile *ChallengeFile) isValid() (error) {
+func (cfile *ChallengeFile) Valid() (error) {
 
 	_, err := govalidator.ValidateStruct(cfile)
 
