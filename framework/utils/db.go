@@ -2,34 +2,27 @@ package utils
 
 import (
 	"fmt"
+	"log"
 	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/jinzhu/gorm"
-	"github.com/joho/godotenv"
-	"log"
-	"os"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 func ConnectDB() *gorm.DB {
 
-	//Load environmenatal variables
-	err := godotenv.Load()
+	//Load environmenatal variable
+	dsn, err := Getenv("dsn")
 
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal("Error loading environment variable")
 	}
-
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	dsn := os.Getenv("dsn")
 
 	//Define DB connection string
 	dbURI := fmt.Sprintf(dsn)
 
 	//connect to db URI
 	db, err := gorm.Open("postgres", dbURI)
-
+	
 	if err != nil {
 		fmt.Println("error", err)
 		panic(err)
@@ -40,6 +33,6 @@ func ConnectDB() *gorm.DB {
 	// Migrate the schema
 	db.AutoMigrate(&domain.User{})
 
-	fmt.Println("Successfully connected!")
+	Printf("Successfully connected!")
 	return db
 }

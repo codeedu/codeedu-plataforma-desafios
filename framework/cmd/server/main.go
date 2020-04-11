@@ -21,11 +21,13 @@ var db *gorm.DB
 func main() {
 
 	db = utils.ConnectDB()
-	db.LogMode(true)
+	db.LogMode(utils.DebugMode());
 
 	port := flag.Int("port", 0, "the server port")
 	flag.Parse()
-	log.Printf("start server on port %d", *port)
+	
+	// log.Printf("start server on port %d", *port)
+	utils.Printf("start server on port %d", *port)
 
 	userServer := setUpUserServer()
 	grpcServer := grpc.NewServer()
