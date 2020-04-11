@@ -35,8 +35,18 @@ func DebugMode() bool {
 	return v
 }
 
+func DevMode() bool {
+	v, _:= Getenv("environment");
+
+	if v == "dev" {
+		return true
+	}
+
+	return false
+}
+
 func Printf(format string, v ...interface{}) {
-	if DebugMode() {
+	if DevMode() {
 		log.Printf(format, v...)
 	}
 }
