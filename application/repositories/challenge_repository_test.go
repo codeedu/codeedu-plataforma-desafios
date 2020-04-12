@@ -45,13 +45,13 @@ func TestChallengeRepositoryDb_InsertWithChallengeFiles(t *testing.T) {
 	challenge.Level = faker.Word()
 	require.Nil(t, challenge.Valid())
 
-	file1, err := domain.NewChallengeFile("test.txt","http://google.com/test.txt")
+	file1, err := domain.NewChallengeFile("test.txt", "http://google.com/test.txt")
 	file1.ChallengeID = challenge.ID
 	require.Nil(t, file1.Valid())
 
-	file2, err := domain.NewChallengeFile("test2.txt","http://google.com/test2.txt")
+	file2, err := domain.NewChallengeFile("test2.txt", "http://google.com/test2.txt")
 	file2.ChallengeID = challenge.ID
-	require.Nil(t, file1.Valid())
+	require.Nil(t, file2.Valid())
 
 	var files []*domain.ChallengeFile
 	files = append(files, file1)
@@ -68,6 +68,7 @@ func TestChallengeRepositoryDb_InsertWithChallengeFiles(t *testing.T) {
 	require.Nil(t, err)
 
 	require.Equal(t, 2, len(c.ChallengeFiles))
-	require.Equal(t, "test2.txt", c.ChallengeFiles[0].Name)
-	require.Equal(t, "test.txt", c.ChallengeFiles[1].Name)
+
+	require.Equal(t, "test.txt", c.ChallengeFiles[0].Name)
+	require.Equal(t, "test2.txt", c.ChallengeFiles[1].Name)
 }
