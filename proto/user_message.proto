@@ -14,7 +14,12 @@ message UserResponse {
     string token = 1;
 }
 
+message UserAuthRequest {
+    string email = 1;
+    string password = 2;
+}
+
 service UserService {
-    rpc CreateUser (UserRequest) returns (UserResponse) {
-    };
+    rpc CreateUser (UserRequest) returns (UserResponse) {};
+    rpc Auth(UserAuthRequest) returns (UserResponse) {};
 }

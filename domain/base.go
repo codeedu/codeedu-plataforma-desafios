@@ -1,22 +1,17 @@
 package domain
 
 import (
-	"github.com/jinzhu/gorm"
-	uuid "github.com/satori/go.uuid"
+	"github.com/asaskevich/govalidator"
 	"time"
 )
 
-// Base contains common columns for all tables.
-type Base struct {
-	ID        string `gorm:"type:uuid;primary_key;"`
-	CreatedAt time.Timer
-	UpdatedAt time.Time
-	DeletedAt *time.Time `sql:"index"`
+func init() {
+	govalidator.SetFieldsRequiredByDefault(true)
 }
 
-// BeforeCreate will set a UUID rather than numeric ID.
-func (base *Base) BeforeCreate(scope *gorm.Scope) error {
-
-	scope.SetColumn("CreatedAt", time.Now())
-	return scope.SetColumn("ID", uuid.NewV4().String())
+type Base struct {
+	ID        string     `json:"id" gorm:"type:uuid;primary_key" valid:"uuid"`
+	CreatedAt time.Time `json:"created_at" valid:"-"`
+	UpdatedAt time.Time `json:"updated_at" valid:"-"`
+	//DeletedAt time.Time `json:"deleted_at" valid:"-" sql:"index"`
 }

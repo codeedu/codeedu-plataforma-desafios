@@ -1,38 +1,56 @@
 package utils
 
 import (
-	"fmt"
-	"log"
 	"github.com/codeedu/codeedu-plataforma-desafios/domain"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
+	"log"
+	"os"
+	"path/filepath"
+	"runtime"
 )
 
-func ConnectDB() *gorm.DB {
+func init() {
+	_, b, _, _ := runtime.Caller(0)
+	basepath   := filepath.Dir(b)
 
-	//Load environmenatal variable
-	dsn, err := Getenv("dsn")
+	err := godotenv.Load(basepath + "/../../.env")
 
 	if err != nil {
-		log.Fatal("Error loading environment variable")
+		log.Fatalf("Error loading .env files")
+	}
+}
+
+func ConnectDB(env string) *gorm.DB {
+	var dsn string
+	var db *gorm.DB
+	var err error
+
+	if env != "test" {
+		dsn = os.Getenv("dsn")
+		db, err = gorm.Open(os.Getenv("dbType"), dsn)
+	} else {
+		dsn = os.Getenv("dsnTest")
+		db, err = gorm.Open(os.Getenv("dbTypeTest"), dsn)
 	}
 
-	//Define DB connection string
-	dbURI := fmt.Sprintf(dsn)
-
-	//connect to db URI
-	db, err := gorm.Open("postgres", dbURI)
-	
 	if err != nil {
-		fmt.Println("error", err)
+		log.Fatalf("Error connecting to database: %v", err)
 		panic(err)
 	}
-	// close db when not in use
+
+	if os.Getenv("debug") == "true" {
+		db.LogMode(true)
+	}
+
+	if os.Getenv("AutoMigrateDb") == "true" {
+		db.AutoMigrate(&domain.User{}, &domain.Author{}, &domain.Challenge{}, &domain.ChallengeFile{})
+		db.Model(domain.ChallengeFile{}).AddForeignKey("challenge_id", "challenges (id)", "CASCADE", "CASCADE")
+	}
+
 	//defer db.Close()
 
-	// Migrate the schema
-	db.AutoMigrate(&domain.User{})
-
-	Printf("Successfully connected!")
 	return db
 }
