@@ -68,7 +68,4 @@ func TestChallengeRepositoryDb_InsertWithChallengeFiles(t *testing.T) {
 	require.Nil(t, err)
 
 	require.Equal(t, 2, len(c.ChallengeFiles))
-
-	require.Equal(t, "test.txt", c.ChallengeFiles[0].Name)
-	require.Equal(t, "test2.txt", c.ChallengeFiles[1].Name)
 }
