@@ -1,9 +1,12 @@
 package domain
 
 import (
+	"errors"
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
+	"os"
+	"strconv"
 	"time"
 )
 
@@ -36,9 +39,12 @@ func NewUser(name string, email string, password string) (*User, error) {
 }
 
 func (user *User) Prepare() error {
+	err := user.checkPasswordLength()
+	if err != nil {
+		return err
+	}
 
 	password, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-
 	if err != nil {
 		return err
 	}
@@ -61,6 +67,28 @@ func (user *User) Prepare() error {
 func (user *User) IsCorrectPassword(password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	return err == nil
+}
+
+// checkPasswordLength verifica se o comprimento da senha está dentro
+// do intervalo aceito.
+func (user *User) checkPasswordLength() error {
+	passwordLen := len(user.Password)
+
+	min, err := strconv.Atoi(os.Getenv("minPasswordLength"))
+	if err != nil {
+		return err
+	}
+
+	max, err := strconv.Atoi(os.Getenv("maxPasswordLength"))
+	if err != nil {
+		return err
+	}
+
+	if passwordLen < min || passwordLen > max {
+		return errors.New("password length has not a valid length")
+	}
+
+	return nil
 }
 
 func (user *User) validate() error {
