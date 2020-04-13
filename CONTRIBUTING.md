@@ -25,7 +25,7 @@ Esperamos que este guia ajude a torne claro o processo de contribuição e respo
 
 ### Código de conduta
 
-Esperamos que os participantes do projeto cumpram nosso Código de Conduta. Você pode verificar o [texto completo](https://opensource.guide/code-of-conduct/) para entender o tipo de conduta que esperamos e quais ações serão e não serão toleradas.
+Esperamos que os participantes do projeto cumpram nosso Código de Conduta. Você pode verificar o [texto completo](https://github.com/codeedu/codeedu-plataforma-desafios/blob/master/CODE_OF_CONDUCT.md) para entender o tipo de conduta que esperamos e quais ações serão e não serão toleradas.
 
 Ao participar deste projeto, você concorda em cumprir seus termos.
 
@@ -45,8 +45,7 @@ Ao documentar, tente manter as coisas simples e claras.
 
 ### Problemas
 
-Alguns problemas são criados com informações ausentes, sem um modelo, não reproduzíveis ou simples
-inválido.
+Alguns problemas são criados com informações ausentes, sem um modelo, não reproduzíveis ou simples inválido.
 
 Você pode torná-los mais fáceis de entender e resolver.
 
@@ -71,17 +70,13 @@ Você pode usar `issue labels` para descobrir problemas com os quais você poder
 - [`bug` issues](https://github.com/codeedu/codeedu-plataforma-desafios/labels/bug) são erros conhecidos que gostaríamos de corrigir;
 - [`enhancement` issues](https://github.com/codeedu/codeedu-plataforma-desafios/labels/enhancement) são recursos que estamos abertos a incluir.
 
-Quando você vir um problema(`issue`) que já está atribuído, verifique se já não há alguém trabalhando nele (talvez tente perguntar no problema(`issue`)). Isso é para evitar trabalho desnecessário para todos os envolvidos.
+Quando você vir um problema(`issue`) que já está atribuído, verifique se já não há alguém trabalhando nele (talvez tente perguntar no problema(`issue`). Isso é para evitar trabalho desnecessário para todos os envolvidos.
 
 #### Ambiente de desenvolvimento
 
 Ao desenvolver, prefira usar **Go** ≥ 1,14. Escrever código com as últimas versões estáveis ​​do Go nos permite usar novas ferramentas de desenvolvedor.
 
-Depois de [clonar o repositório](https://help.github.com/articles/cloning-a-repository/), para subir as aplicações `client` e `server` você precisa navegar até suas respectivas pastas.
-
-**client** (/codeedu-plataforma-desafios/framework/cmd/client)
-
-    $ go run main.go
+Depois de [clonar o repositório](https://help.github.com/articles/cloning-a-repository/), para subir a aplicação `server` você precisa navegar até sua pasta.
 
 **server** (/codeedu-plataforma-desafios/framework/cmd/server)
 
@@ -131,7 +126,7 @@ Antes de enviar um `pull request`, verifique se o seguinte foi feito:
 
 - [Fork](https://help.github.com/en/articles/fork-a-repo) o repositório e crie seu branch a partir do `master`.
   - Exemplo: `feature/my-awesome-feature` ou `fix/annoying-bug`;
-- Execute `go run main.go` no `client` e no `server`;
 - Se você corrigiu um bug ou adicionou um código que deve ser testado, **adicione testes** por favor;
 - Garantir que o conjunto de testes seja aprovado;
 - Garanta que seu commit seja validado;
+- Execute `go test ./...` para rodar todos os testes;
