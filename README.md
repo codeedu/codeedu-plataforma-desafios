@@ -1,4 +1,4 @@
-# Plataforma de desesafios da Code.education
+# Plataforma de desafios da Code.education
 
 ## Objetivo
 
@@ -11,6 +11,16 @@ Para cada fase do projeto, um vídeo será gravado explicando os principais conc
 Os vídeos estarão disponibilizados no [canal Full Cycle no Youtube](http://youtube.com/fullcycle).
 
 Na seção "Issues" desse repositório você encontrará tarefas para melhorias e funcionalidades que deverão ser implementadas.
+
+
+## Para testar a execução do server 
+Para testar os serviços disponibilizados pelo "server", recomendamos a utilização do "evans", um client gRPC desenvolvido em Go.
+
+Exemplo:
+
+```bash
+evans -r -p 8080
+```
 
 ## Contribuindo
 

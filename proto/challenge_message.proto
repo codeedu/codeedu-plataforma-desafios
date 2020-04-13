@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package education.code.codeedu;
+
+option go_package = "pb";
+
+message Challenge {
+    string title = 1;
+    string slug = 2;
+    string description = 3;
+    string tags = 4;
+    string requirements = 5;
+    repeated ChallengeFile file = 6;
+    string level = 7;
+}
+
+message ChallengeFile {
+    string name = 2;
+    string url = 3;
+}
+
+message NewChallengeRequest {
+    Challenge challenge = 1;
+}
+
+
+message NewChallengeResponse {
+    string challenge_id = 1;
+}
+
+service ChallengeService {
+    rpc CreateChallenge (NewChallengeRequest) returns (NewChallengeResponse) {};
+}
