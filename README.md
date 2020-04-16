@@ -1,6 +1,6 @@
 # Plataforma de desafios da Code.education
 
-![Test](https://github.com/codeedu/codeedu-plataforma-desafios/workflows/Test/badge.svg?branch=master&event=pull_request)
+![Test](https://github.com/codeedu/codeedu-plataforma-desafios/workflows/Test/badge.svg?branch=master)
 
 ## Objetivo
 
