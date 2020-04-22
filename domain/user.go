@@ -1,12 +1,9 @@
 package domain
 
 import (
-	"errors"
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
-	"os"
-	"strconv"
 	"time"
 )
 
@@ -18,7 +15,7 @@ type User struct {
 	Base     `valid:"required"`
 	Name     string `json:"name" gorm:"type:varchar(255)" valid:"notnull"`
 	Email    string `json:"email" gorm:"type:varchar(255);unique_index" valid:"notnull,email"`
-	Password string `json:"-" gorm:"type:varchar(255)" valid:"notnull"`
+	Password string `json:"-" gorm:"type:varchar(255)" valid:"notnull,stringlength(5|8)"`
 	Token    string `json:"token" gorm:"type:varchar(255);unique_index" valid:"notnull,uuid"`
 }
 
@@ -30,7 +27,6 @@ func NewUser(name string, email string, password string) (*User, error) {
 	}
 
 	err := user.Prepare()
-
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +35,11 @@ func NewUser(name string, email string, password string) (*User, error) {
 }
 
 func (user *User) Prepare() error {
-	err := user.checkPasswordLength()
+	user.ID = uuid.NewV4().String()
+	user.CreatedAt = time.Now()
+	user.Token = uuid.NewV4().String()
+
+	err := user.validate()
 	if err != nil {
 		return err
 	}
@@ -49,19 +49,9 @@ func (user *User) Prepare() error {
 		return err
 	}
 
-	user.ID = uuid.NewV4().String()
-	user.CreatedAt = time.Now()
 	user.Password = string(password)
-	user.Token = uuid.NewV4().String()
-
-	err = user.validate()
-
-	if err != nil {
-		return err
-	}
 
 	return nil
-
 }
 
 func (user *User) IsCorrectPassword(password string) bool {
@@ -69,32 +59,8 @@ func (user *User) IsCorrectPassword(password string) bool {
 	return err == nil
 }
 
-// checkPasswordLength verifica se o comprimento da senha está dentro
-// do intervalo aceito.
-func (user *User) checkPasswordLength() error {
-	passwordLen := len(user.Password)
-
-	min, err := strconv.Atoi(os.Getenv("minPasswordLength"))
-	if err != nil {
-		return err
-	}
-
-	max, err := strconv.Atoi(os.Getenv("maxPasswordLength"))
-	if err != nil {
-		return err
-	}
-
-	if passwordLen < min || passwordLen > max {
-		return errors.New("password length has not a valid length")
-	}
-
-	return nil
-}
-
 func (user *User) validate() error {
-
 	_, err := govalidator.ValidateStruct(user)
-
 	if err != nil {
 		return err
 	}
