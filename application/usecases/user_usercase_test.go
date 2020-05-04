@@ -18,7 +18,7 @@ func TestLogin_Auth(t *testing.T) {
 
 	repo := repositories.UserRepositoryDb{Db: db}
 	email := faker.Email()
-	password := faker.Password()
+	password := "!a1s1#"
 
 	newUser, err := domain.NewUser(faker.Name(), email, password)
 	repo.Insert(newUser)
