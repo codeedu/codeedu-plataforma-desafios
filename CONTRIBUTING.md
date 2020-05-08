@@ -17,7 +17,7 @@
 
 ## Primeiros Passos
 
-Primeiramente, gostaríamos de agradecer por você dedicar um tempo para contribuir e fazer deste um projeto melhor.
+Primeiramente, gostaríamos de agradecer por você dedicar um tempo para contribuir e fazer deste um projeto melhor..
 
 Aqui temos um conjunto de instruções e diretrizes para reduzir mal-entendidos e tornar o processo de contribuição para o `codeedu-plataforma-desafios` o mais suave possível.
 
