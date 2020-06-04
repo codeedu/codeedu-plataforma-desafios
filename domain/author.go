@@ -1,9 +1,10 @@
 package domain
 
 import (
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 type Author struct {
@@ -11,7 +12,7 @@ type Author struct {
 	Name    string `json:"name" valid:"notnull" gorm:"type:varchar(255)"`
 	Email   string `json:"email" valid:"email" gorm:"type:varchar(255)"`
 	Picture string `json:"picture" valid:"-" gorm:"type:varchar(255)"`
-	Github  string `json:"picture" valid:"-" gorm:"type:varchar(255)"
+	Github  string `json:"github" valid:"-" gorm:"type:varchar(255)"`
 }
 
 func NewAuthor(name string, email string) (*Author, error) {
@@ -33,7 +34,7 @@ func NewAuthor(name string, email string) (*Author, error) {
 	return &author, nil
 }
 
-func (author *Author) isValid() (error) {
+func (author *Author) isValid() error {
 
 	_, err := govalidator.ValidateStruct(author)
 
