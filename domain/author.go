@@ -11,7 +11,7 @@ type Author struct {
 	Name    string `json:"name" valid:"notnull" gorm:"type:varchar(255)"`
 	Email   string `json:"email" valid:"email" gorm:"type:varchar(255)"`
 	Picture string `json:"picture" valid:"-" gorm:"type:varchar(255)"`
-	Github  string `json:"picture" valid:"-" gorm:"type:varchar(255)"`
+	Github  string `json:"picture" valid:"-" gorm:"type:varchar(255)"
 }
 
 func NewAuthor(name string, email string) (*Author, error) {
