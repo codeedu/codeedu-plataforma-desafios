@@ -3,6 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+	"net"
+	"os"
+
 	"github.com/codeedu/codeedu-plataforma-desafios/application/repositories"
 	"github.com/codeedu/codeedu-plataforma-desafios/application/usecases"
 	"github.com/codeedu/codeedu-plataforma-desafios/framework/pb"
@@ -13,9 +17,6 @@ import (
 	_ "github.com/lib/pq"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	"log"
-	"net"
-	"os"
 )
 
 var db *gorm.DB
@@ -52,7 +53,7 @@ func main() {
 
 	err = grpcServer.Serve(listener)
 	if err != nil {
-		log.Fatal("cannot start server: ", err
+		log.Fatal("cannot start server: ", err)
 	}
 }
 
