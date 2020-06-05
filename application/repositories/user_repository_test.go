@@ -16,7 +16,7 @@ func TestUserRepositoryDb_Find(t *testing.T) {
 	defer db.Close()
 
 	repo := repositories.UserRepositoryDb{Db: db}
-	newUser, err := domain.NewUser(faker.Name(), faker.Email(), "123")
+	newUser, err := domain.NewUser(faker.Name(), faker.Email(), "!a1s2$")
 
 	if err != nil {
 		log.Fatalf("%v", err)

@@ -1,25 +1,56 @@
 package domain
 
 import (
+	"fmt"
+	"regexp"
+	"strings"
+	"time"
+	"unicode/utf8"
+
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
-	"time"
 )
 
 func init() {
+
+	govalidator.CustomTypeTagMap.Set("notempty", func(i interface{}, o interface{}) bool {
+		return utf8.RuneCountInString(strings.TrimSpace(fmt.Sprintf("%v", i))) > 0
+	})
+
 	govalidator.SetFieldsRequiredByDefault(true)
+
 }
 
 type User struct {
 	Base     `valid:"required"`
-	Name     string `json:"name" gorm:"type:varchar(255)" valid:"notnull"`
+	Name     string `json:"name" gorm:"type:varchar(255)" valid:"notnull,notempty"`
 	Email    string `json:"email" gorm:"type:varchar(255);unique_index" valid:"notnull,email"`
 	Password string `json:"-" gorm:"type:varchar(255)" valid:"notnull"`
 	Token    string `json:"token" gorm:"type:varchar(255);unique_index" valid:"notnull,uuid"`
 }
 
+func isAStrongPassword(password string) bool {
+
+	re := []*regexp.Regexp{
+		regexp.MustCompile(`[a-zA-Z]+`),
+		regexp.MustCompile(`[0-9]+`),
+		regexp.MustCompile(`[\_\@\.\#\$\&\+\-]+`),
+	}
+
+	for _, r := range re {
+		rawData := []byte(password)
+		indexes := r.FindIndex(rawData)
+		if len(indexes) < 2 {
+			return false
+		}
+	}
+	return true
+}
+
 func NewUser(name string, email string, password string) (*User, error) {
+
+
 	user := &User{
 		Name:     name,
 		Email:    email,
@@ -36,6 +67,10 @@ func NewUser(name string, email string, password string) (*User, error) {
 }
 
 func (user *User) Prepare() error {
+
+	if !isAStrongPassword(user.Password) {
+		return fmt.Errorf("weak password")
+	}
 
 	password, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 
