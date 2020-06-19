@@ -18,5 +18,5 @@ type Base struct {
 }
 
 func Sample() {
-  passowrd="wesley"	
+  password = "wesley"	
 }
