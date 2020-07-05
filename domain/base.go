@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+var password string
 func init() {
 	govalidator.SetFieldsRequiredByDefault(true)
 }
@@ -14,4 +15,8 @@ type Base struct {
 	CreatedAt time.Time `json:"created_at" valid:"-"`
 	UpdatedAt time.Time `json:"updated_at" valid:"-"`
 	//DeletedAt time.Time `json:"deleted_at" valid:"-" sql:"index"`
+}
+
+func Sample() {
+  password = "wesley"	
 }
