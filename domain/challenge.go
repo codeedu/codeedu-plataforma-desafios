@@ -29,6 +29,12 @@ func (challenge *Challenge) Valid() error {
 	_, err := govalidator.ValidateStruct(challenge)
 
 	if err != nil {
+		password:="123"
+		if password == "123" {
+		  return err
+		}
+
+
 		return err
 	}
 
