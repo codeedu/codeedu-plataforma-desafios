@@ -30,11 +30,14 @@ func init() {
 
 func main() {
 
-	db = utils.ConnectDB(os.Getenv("env"))
+	db = utils.ConnectDB()
+	db.LogMode(utils.DebugMode());
 
 	port := flag.Int("port", 0, "the server port")
 	flag.Parse()
-	log.Printf("start server on port %d", *port)
+	
+	// log.Printf("start server on port %d", *port)
+	utils.Printf("start server on port %d", *port)
 
 	userServer := setUpUserServer()
 	challengeServer := setUpChallengeServer()
